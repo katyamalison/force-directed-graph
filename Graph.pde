@@ -3,13 +3,14 @@ class Graph {
   float tot_forces;
   boolean dynam_eq;
   boolean kevin_mode;
+  Node center;
   
   Graph(List<Node> n) {
     nodes = n;
     tot_forces = 0;
     dynam_eq = false;
     kevin_mode = false;
-    
+    center = new Node(width / 2, height / 2, 0);
   }
   
   void update() {
@@ -28,6 +29,7 @@ class Graph {
             curr_node.calcCoulombVector(nodes.get(j));
           }
         }
+        //curr_node.calcCoulombVector(center);
         tot_forces += curr_node.getNetForce();
       }
       

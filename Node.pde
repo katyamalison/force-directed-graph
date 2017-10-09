@@ -2,8 +2,8 @@ import java.util.List;
 import java.util.Random;
 
 int MASS_CONST = 20;
-float HOOKE_CONST = .00666;
-float COUL_CONST = 400;
+float HOOKE_CONST = .0055555;
+float COUL_CONST = 8000;
 float DAMPENING = 0.9;
 color NORM = #b0026b;
 color HIGHLIGHT = #fdcbcb;
@@ -17,6 +17,12 @@ class Node {
   color clr;
   List<Connection> connections;
   Vector force_vector;
+  
+  Node(float x_coord, float y_coord, int cen_mass) {
+    x = x_coord;
+    y = y_coord;
+    mass = cen_mass;
+  }
   
   Node(int id, int m) {
     Random randy = new Random();
@@ -69,8 +75,11 @@ class Node {
   if(x - (diameter / 2) < 0)
     x = (diameter / 2);
     
-  if(y + (diameter / 2) > height)
+  if(y + (diameter / 2) > height) {
     y = height - (diameter / 2);
+    println("y = " + y + " height = " + height + " diameter =" + diameter);
+  }
+    
     
   if(y - (diameter / 2) < 0)
     y = (diameter / 2);
@@ -142,6 +151,7 @@ class Node {
   void move() {
     x = mouseX-xOffset; 
     y = mouseY-yOffset;
+    boundPosition();
   }
   
   float calcHooke(float x_neighbor, float y_neighbor){
@@ -153,7 +163,7 @@ class Node {
   float calcCoulomb(float x_neighbor, float y_neighbor){
     float distance = dist(x, y, x_neighbor, y_neighbor);
     
-    return COUL_CONST / distance;
+    return COUL_CONST / (distance * distance);
   }
   
   float calcHookeVector() {
@@ -179,7 +189,8 @@ class Node {
     return getNetForce();
   }
   
-  void calcCoulombVector(Node node) {
+  
+void calcCoulombVector(Node node) {
     Vector vector;
     
     float neighbor_x = node.getX();
@@ -188,9 +199,28 @@ class Node {
     float force = calcCoulomb(neighbor_x, neighbor_y);
     
     vector = new Vector(neighbor_x, neighbor_y, x, y, force);
+
     
     force_vector.addVector(vector);
   }
+  
+  //void calcCoulombVector(Node node, boolean attract) {
+  //  Vector vector;
+    
+  //  float neighbor_x = node.getX();
+  //  float neighbor_y = node.getY();
+    
+  //  float force = calcCoulomb(neighbor_x, neighbor_y);
+    
+  //  if(!attract) {
+  //    vector = new Vector(neighbor_x, neighbor_y, x, y, force);
+  //  }
+  //  else {
+  //    vector = new Vector(x, y, neighbor_x, neighbor_y, force);
+  //  }
+    
+  //  force_vector.addVector(vector);
+  //}
   
   void updatePosition() {
     float force_x = force_vector.getX();
