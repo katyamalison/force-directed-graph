@@ -9,6 +9,7 @@ class Graph {
     tot_forces = 0;
     dynam_eq = false;
     kevin_mode = false;
+    
   }
   
   void update() {
@@ -47,18 +48,24 @@ class Graph {
   }
   
   void lockNodes() {
+    if(dynam_eq)
+      dynam_eq = false;
     for (int i = 0; i < nodes.size(); i++) {
       nodes.get(i).lock();
     }
   }
   
   void unlockNodes() {
+    if(dynam_eq)
+      dynam_eq = false;
     for (int i = 0; i < nodes.size(); i++) {
       nodes.get(i).unlock();
     }  
   }
   
   void moveNodes() {
+    if(dynam_eq)
+      dynam_eq = false;
     for (int i = 0; i < nodes.size(); i++) {
       if (nodes.get(i).isLocked()) {
         nodes.get(i).move();

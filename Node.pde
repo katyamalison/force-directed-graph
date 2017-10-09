@@ -2,8 +2,8 @@ import java.util.List;
 import java.util.Random;
 
 int MASS_CONST = 20;
-float HOOKE_CONST = .001;
-float COUL_CONST = 4.7;
+float HOOKE_CONST = .00666;
+float COUL_CONST = 400;
 float DAMPENING = 0.9;
 color NORM = #b0026b;
 color HIGHLIGHT = #fdcbcb;

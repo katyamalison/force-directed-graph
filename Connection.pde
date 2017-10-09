@@ -4,7 +4,7 @@ class Connection {
   
   Connection(Node n, float edge_length) {
    neighbor = n;
-   default_edge = edge_length * 2;
+   default_edge = (edge_length * .0000005);
    //TODO: figure out random start value stuff for when we make nodes
    //edge = new Spring(springlen, random value)
   }
