@@ -93,7 +93,7 @@ void mouseMoved() {
 }
 
 void setup() {
-  size(1200, 1000);
+  size(1100, 1000);
   surface.setResizable(true);
   
   String[] data = loadStrings(DATA);
