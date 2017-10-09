@@ -10,9 +10,11 @@ color HIGHLIGHT = #fdcbcb;
 
 class Node {
   int node_id;
-  int mass, diameter;
+  int mass;
   float x, y;
   float xOffset, yOffset;
+  float unit_area, diameter;
+  
   boolean visited, locked;
   color clr;
   List<Connection> connections;
@@ -29,7 +31,8 @@ class Node {
     
     node_id = id;
     mass = m;
-    diameter = mass * MASS_CONST;
+    unit_area = PI * ((MASS_CONST / 2) * (MASS_CONST / 2));
+    diameter = 2 * sqrt(mass * unit_area / PI);
     visited = false;
     locked = false;
     connections = new ArrayList<Connection>();
