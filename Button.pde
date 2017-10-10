@@ -9,12 +9,12 @@ public class Button {
   String label;
   color backgroundColor;
   
-  public Button(int x, int y) {
-    Width = 150;
-    Height = 20;
+  public Button(int x, int y, int w, int h, String t) {
+    Width = w;
+    Height = h;
     centerX = x;
     centerY = y;
-    label = KEVIN_MODE;
+    label = t;
     backgroundColor = #ffffff;
   }
   
@@ -54,6 +54,6 @@ public class Button {
     textSize(14);
     textAlign(LEFT);
     //textAlign(CENTER,CENTER);
-    text(label, centerX + 5, centerY + 15);
+    text(label, centerX + 10, centerY + 20);
   }
 }
