@@ -4,6 +4,7 @@ class Graph {
   boolean dynam_eq;
   boolean kevin_mode;
   Node center;
+  Node kevin;
   int degree;
   
   Graph(List<Node> n) {
@@ -128,10 +129,6 @@ class Graph {
     return kevin;
   }
   
-  void KevinBacon() {
-    Node kevin = getKevin();
-    
-  }
   
   void display() {
     
@@ -141,6 +138,9 @@ class Graph {
     
     for (int i = 0; i < nodes.size(); i++) {
       nodes.get(i).display_nodes();
+     if (nodes.get(i) == kevin && kevin_mode) {
+       nodes.get(i).displayKevin();
+      }
     }
     
     for (int i = 0; i < nodes.size(); i++) {
@@ -172,13 +172,14 @@ class Graph {
     
   }
   void updateBacon() {
+    kevin = getKevin();
     if(kevin_mode) {
       for(int i = 0; i < nodes.size(); i ++) {
        nodes.get(i).setNormColor();
        nodes.get(i).connected = false;
        nodes.get(i).visited = false; 
       }
-      find_connections(degree, getKevin());
+      find_connections(degree, kevin);
       getKevin().baconColor();
       getKevin().connected = true;
     }

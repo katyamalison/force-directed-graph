@@ -108,6 +108,7 @@ class Node {
   void displayData() {
     String txt = makeText();
     
+    textAlign(LEFT);
     textSize(12);
     float text_width = textWidth(txt);
     
@@ -126,6 +127,12 @@ class Node {
     for (int i = 0; i < connections.size(); i++) {
       connections.get(i).display(x, y);
     }
+  }
+  
+  void displayKevin() {
+    textAlign(CENTER);
+    fill(#ffffff);
+    text("Kevin Bacon", x, y);
   }
   
   void addConnection(Node neighbor, float springlen) {
