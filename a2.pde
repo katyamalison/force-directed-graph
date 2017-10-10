@@ -21,9 +21,9 @@ List<Node> makeGraph(String [] data) {
   
   connectNodes(edge_data, nodes);
   
-  for(int i = 0; i < nodes.size(); i++) {
-    println(nodes.get(i).getId());
-  }
+//  for(int i = 0; i < nodes.size(); i++) {
+//    println(nodes.get(i).getId());
+//  }
   
   return nodes;
 }
@@ -49,7 +49,7 @@ void connectNodes(String [] edge_data, List <Node> nodes) {
     Node node_one = null;
     Node node_two = null; 
     for (int j = 0; j < nodes.size(); j ++) {
-      println("for loop iteration " + j);
+//      println("for loop iteration " + j);
       if(nodes.get(j).getId() == id_1) {
         node_one = nodes.get(j);
       }
@@ -60,7 +60,7 @@ void connectNodes(String [] edge_data, List <Node> nodes) {
     }
     
     if (node_one != null && node_two != null) {
-      println("adding node " + node_one.getId() + " and node " + node_two.getId());
+//      println("adding node " + node_one.getId() + " and node " + node_two.getId());
       node_one.addConnection(node_two, edge_len);
       node_two.addConnection(node_one, edge_len);
     }
@@ -117,7 +117,7 @@ void setup() {
 }
 
 int getFontSize() {
-  println("w: " + width);
+//  println("w: " + width);
   return width / 17;
 }
 

@@ -21,7 +21,7 @@ class Vector {
   }
   
   public void printVector() {
-    println("(" + x + ", " + y + ")");
+//    println("(" + x + ", " + y + ")");
   }
   
   public float getX() {

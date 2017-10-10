@@ -69,12 +69,12 @@ class Graph {
   
   void incrementDegree() {
     degree += 1;
-    println(degree);
+//    println(degree);
   }
   
   void decrementDegree() {
     degree -= 1;
-    println(degree);
+//    println(degree);
   }
   
   void lockNodes() {
