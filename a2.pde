@@ -4,6 +4,9 @@ color BACKGROUND = #f09b9b;
 String DATA = "data2.csv";
 Graph graph;
 Button button;
+Button plus;
+Button minus;
+
 
 List<Node> makeGraph(String [] data) {
   int num_nodes = Integer.parseInt(data[0]);
@@ -78,6 +81,15 @@ void mouseClicked() {
     button.changeLabel();
     graph.changeMode();
   }
+  if(plus.clickedOn() && graph.getMode()) {
+    graph.incrementDegree();
+    graph.updateBacon();
+  }
+  if(minus.clickedOn() && graph.getMode()) {
+    if(graph.degree > 0)
+      graph.decrementDegree();
+    graph.updateBacon();
+  }
 }
 
 void mouseDragged() {
@@ -99,7 +111,13 @@ void setup() {
   String[] data = loadStrings(DATA);
   
   graph = new Graph(makeGraph(data));
-  button = new Button(10, 10);
+  button = new Button(10, 10, 150, 30, "Kevin Bacon Mode");
+  plus = new Button(10, 50, 30, 30, "+");
+  minus = new Button(130, 50, 30, 30, "-");
+}
+
+int getFontSize() {
+  return 70;
 }
 
 void draw() {
@@ -107,4 +125,16 @@ void draw() {
   graph.update();
   graph.display();
   button.render();
+  if (graph.getMode()) {
+    fill(#ffffff);
+    textSize(30);
+    text(graph.getDegree(), 75, 75);
+    plus.render();
+    minus.render();
+  }
+  if (graph.getDegree() > 6) {
+    fill(#ffffff);
+    textSize(getFontSize());
+    text("No one is more than 6", 50, 300);
+  }
 }

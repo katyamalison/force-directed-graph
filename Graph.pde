@@ -54,7 +54,6 @@ class Graph {
       for(int i = 0; i < nodes.size(); i ++) {
        nodes.get(i).visited = false; 
       }
-      degree = 3;
       find_connections(degree, getKevin());
       getKevin().baconColor();
       getKevin().connected = true;
@@ -68,12 +67,30 @@ class Graph {
     
   }
   
+  void incrementDegree() {
+    degree += 1;
+    println(degree);
+  }
+  
+  void decrementDegree() {
+    degree -= 1;
+    println(degree);
+  }
+  
   void lockNodes() {
     if(dynam_eq)
       dynam_eq = false;
     for (int i = 0; i < nodes.size(); i++) {
       nodes.get(i).lock();
     }
+  }
+  
+  boolean getMode() {
+    return kevin_mode;
+  }
+  
+  int getDegree() {
+    return degree;
   }
   
   void unlockNodes() {
@@ -117,6 +134,7 @@ class Graph {
   }
   
   void display() {
+    
     for (int i = 0; i < nodes.size(); i++) {
       nodes.get(i).display_connections();
     }
@@ -152,5 +170,17 @@ class Graph {
     }
 
     
+  }
+  void updateBacon() {
+    if(kevin_mode) {
+      for(int i = 0; i < nodes.size(); i ++) {
+       nodes.get(i).setNormColor();
+       nodes.get(i).connected = false;
+       nodes.get(i).visited = false; 
+      }
+      find_connections(degree, getKevin());
+      getKevin().baconColor();
+      getKevin().connected = true;
+    }
   }
 }
