@@ -83,9 +83,12 @@ void mouseClicked() {
   }
   if(plus.clickedOn() && graph.getMode()) {
     graph.incrementDegree();
+    graph.updateBacon();
   }
   if(minus.clickedOn() && graph.getMode()) {
-    graph.decrementDegree();
+    if(graph.degree > 0)
+      graph.decrementDegree();
+    graph.updateBacon();
   }
 }
 

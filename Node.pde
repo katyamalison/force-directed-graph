@@ -7,6 +7,7 @@ float COUL_CONST = 8000;
 float DAMPENING = 0.9;
 color NORM = #b0026b;
 color HIGHLIGHT = #fdcbcb;
+color BACON = #f456ab;
 
 class Node {
   int node_id;
@@ -15,7 +16,7 @@ class Node {
   float xOffset, yOffset;
   float unit_area, diameter;
   
-  boolean visited, locked;
+  boolean visited, locked, connected;
   color clr;
   List<Connection> connections;
   Vector force_vector;
@@ -38,6 +39,7 @@ class Node {
     connections = new ArrayList<Connection>();
     force_vector = new Vector();
     clr = NORM;
+    connected = false;
     
     // add values of circle size so that doesnt go off screen
     x = randy.nextInt(width);
@@ -68,6 +70,10 @@ class Node {
   
   boolean isVisited() {
    return visited; 
+  }
+  
+  void setNormColor() {
+   clr = NORM;
   }
   
   void visited() {
@@ -133,10 +139,22 @@ class Node {
   }
   
   void highlight() {
+    if(connected) {
+      return;
+    }
+    
     if (inside() && !isLocked())
       clr = HIGHLIGHT;
     else 
       clr = NORM;
+  }
+  
+  void baconHighlight() {
+   clr = HIGHLIGHT; 
+  }
+  
+  void baconColor() {
+   clr = BACON; 
   }
   
   void lock() {
