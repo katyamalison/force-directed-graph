@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 color BACKGROUND = #f09b9b;
-String DATA = "data1.csv";
+String DATA = "data2.csv";
 Graph graph;
 Button button;
 

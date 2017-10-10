@@ -4,6 +4,7 @@ class Graph {
   boolean dynam_eq;
   boolean kevin_mode;
   Node center;
+  int degree;
   
   Graph(List<Node> n) {
     nodes = n;
@@ -11,6 +12,7 @@ class Graph {
     dynam_eq = false;
     kevin_mode = false;
     center = new Node(width / 2, height / 2, 0);
+    degree = 0;
   }
   
   void update() {
@@ -47,6 +49,10 @@ class Graph {
   
   void changeMode() {
     kevin_mode = !kevin_mode;
+    for(int i = 0; i < nodes.size(); i ++) {
+     nodes.get(i).visited = false; 
+    }
+    find_connections(2, nodes.get(16));
   }
   
   void lockNodes() {
@@ -111,5 +117,26 @@ class Graph {
         nodes.get(i).displayData();
       }
     }
+  
+  
+  void find_connections(int curr_degree, Node curr_node) {
+    List <Connection> connections;
+    
+    if(curr_degree == 0) {
+      if(!curr_node.isVisited())
+      println(curr_node.getId());
+    }
+    else if(curr_node.isVisited()) {
+     return; 
+    }
+    else {
+      curr_node.visited();
+      connections = curr_node.getConnections();
+      for(int i = 0; i < connections.size(); i++) {
+        find_connections(curr_degree - 1, connections.get(i).getNeighbor());
+      }
+    }
+
+    
   }
 }

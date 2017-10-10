@@ -27,4 +27,8 @@ class Connection {
   float getDefaultEdge() {
     return default_edge;
   }
+  
+  Node getNeighbor() {
+   return neighbor; 
+  }
 }

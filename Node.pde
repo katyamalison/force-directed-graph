@@ -70,6 +70,10 @@ class Node {
    return visited; 
   }
   
+  void visited() {
+    visited = true;
+  }
+  
   void boundPosition() {
    if(x + (diameter / 2) > width)
      x = width - (diameter / 2);
@@ -80,7 +84,7 @@ class Node {
     
   if(y + (diameter / 2) > height) {
     y = height - (diameter / 2);
-    println("y = " + y + " height = " + height + " diameter =" + diameter);
+    //println("y = " + y + " height = " + height + " diameter =" + diameter);
   }
     
     
@@ -237,5 +241,9 @@ void calcCoulombVector(Node node) {
     boundPosition();
     
     force_vector.multiplyFloat(DAMPENING);
+  }
+  
+  List<Connection> getConnections() {
+    return connections;
   }
 }
