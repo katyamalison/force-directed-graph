@@ -114,7 +114,16 @@ void setup() {
 }
 
 int getFontSize() {
-  return 70;
+  println("w: " + width);
+  return width / 17;
+}
+
+float getX(float num) {
+  return width * num;
+}
+
+float getY(float num) {
+  return height * num;
 }
 
 void draw() {
@@ -129,9 +138,11 @@ void draw() {
     plus.render();
     minus.render();
   }
-  if (graph.getDegree() > 6) {
+  if (graph.getDegree() > 6 && graph.getMode()) {
     fill(#ffffff);
     textSize(getFontSize());
-    text("No one is more than 6", 50, 300);
+    text("No one is more than 6", 50, getY(0.4));
+    text("degrees away from Kevin Bacon.", 50, getY(0.5));
+    text("No one.", 50, getY(0.7));
   }
 }
