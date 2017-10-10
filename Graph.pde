@@ -49,10 +49,23 @@ class Graph {
   
   void changeMode() {
     kevin_mode = !kevin_mode;
-    for(int i = 0; i < nodes.size(); i ++) {
-     nodes.get(i).visited = false; 
+    
+    if(kevin_mode) {
+      for(int i = 0; i < nodes.size(); i ++) {
+       nodes.get(i).visited = false; 
+      }
+      degree = 3;
+      find_connections(degree, getKevin());
+      getKevin().baconColor();
+      getKevin().connected = true;
     }
-    find_connections(2, nodes.get(16));
+    else {
+      for(int i = 0; i < nodes.size(); i++) {
+       nodes.get(i).setNormColor();
+       nodes.get(i).connected = false;
+      }
+    }
+    
   }
   
   void lockNodes() {
@@ -117,14 +130,15 @@ class Graph {
         nodes.get(i).displayData();
       }
     }
-  
+  }
   
   void find_connections(int curr_degree, Node curr_node) {
     List <Connection> connections;
     
     if(curr_degree == 0) {
       if(!curr_node.isVisited())
-      println(curr_node.getId());
+        curr_node.baconHighlight();
+      curr_node.connected = true;
     }
     else if(curr_node.isVisited()) {
      return; 
